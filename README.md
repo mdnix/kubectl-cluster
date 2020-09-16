@@ -61,7 +61,7 @@ $ kubectl cluster run --targets okd,minikube get pods
 ### Get Pods of clusters containing the specified tag in the config
 
 ```bash
-$ kubectl cluster run --targets okd,minikube get pods 
+$ kubectl cluster run --tags test get pods 
 ```
 
 

@@ -33,15 +33,21 @@ import (
 var (
 	cfgFile         string
 	rootCmdExamples = `
+	# List available clusters
+	kubectl cluster list
+
 	# Get Pods of all clusters using the current context
 	kubectl cluster run get pods 
 
 	# Get Pods of all clusters overriding the current namespace of the context
-	# Important, when using flags for regular kubectl commands "--" has to be added to signify the end of command options
+	# NOTE: when using flags for regular kubectl commands "--" has to be added to signify the end of command options
 	kubectl cluster run -- get pods --all-namespaces
 
 	# Get Pods of specified clusters using the current context
 	kubectl cluster run --targets okd,minikube get pods 
+
+	# Get Pods of clusters containing the specified tag in the config
+	kubectl cluster run --tags test get pods 
 `
 )
 
@@ -49,9 +55,8 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "kubectl-cluster",
 	Short: "kubectl cluster plugin",
-	Long: `The kubectl cluster plugin allows you to switch between cluster contexts.
-You can either set the cluster context permanently or run a command on the
-specified cluster.`,
+	Long: `The kubectl-cluster plugin lets you run kubectl commands across a number of specified clusters. 
+It is possible to run any kubectl command since this plugin is basically a wrapper around kubectl.`,
 	Version: version.Version,
 	Example: rootCmdExamples,
 }
