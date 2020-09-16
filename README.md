@@ -3,6 +3,16 @@
 The kubectl-cluster plugin lets you run kubectl commands across a number of specified clusters.
 It is possible to run any kubectl command since this plugin is basically a wrapper around kubectl.
 
+## Install
+
+Linux example:
+
+```bash
+git clone https://github.com/mdnix/kubectl-cluster.git
+make compile
+cp _out/linux/kubectl-cluster /usr/local/bin/
+```
+
 ## Usage
 
 ### Define the cluster config
