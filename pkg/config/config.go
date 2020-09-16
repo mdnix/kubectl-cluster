@@ -18,9 +18,9 @@ package config
 
 type Config struct {
 	Clusters []struct {
-		Name   string `mapstructure:"name"`
-		Config string `mapstructure:"config"`
-		Tags   string `mapstructure:"tags"`
+		Name   string   `mapstructure:"name"`
+		Config string   `mapstructure:"config"`
+		Tags   []string `mapstructure:"tags"`
 	} `mapstructure:"clusters"`
 }
 

@@ -103,11 +103,12 @@ func runTargets(ctx context.Context, args []string) {
 }
 
 func runTags(ctx context.Context, args []string) {
-	for _, tag := range tags {
-		for i := range config.Conf.Clusters {
-			if config.Conf.Clusters[i].Tags == tag {
+	for i := range config.Conf.Clusters {
+		for _, tag := range tags {
+			if sliceContains(config.Conf.Clusters[i].Tags, tag) {
 				wg.Add(1)
 				go runKubectl(ctx, config.Conf.Clusters[i].Name, args, i, wg)
+				break
 			}
 		}
 	}
@@ -124,4 +125,13 @@ func runKubectl(ctx context.Context, cluster string, args []string, i int, wg *s
 
 	fmt.Printf("Results from: %s\n\n", cluster)
 	fmt.Println(string(res))
+}
+
+func sliceContains(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
 }
