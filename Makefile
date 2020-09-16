@@ -15,8 +15,12 @@ compile: ## Compile the cli for linux-amd64 and darwin-amd64
 	# 64-Bit Linux
 	GOOS=linux GOARCH=amd64 $(GO) build -ldflags "-w -s -X 'kubectl-cluster/cmd/version.BuildDate=$(BUILD_DATE)' -X 'kubectl-cluster/cmd/version.GitBranch=$(GIT_BRANCH)' -X 'kubectl-cluster/cmd/version.GitHash=$(GIT_HASH)'  -X 'kubectl-cluster/cmd/version.Version=$(VERSION)'" -o $(ARTIFACTS)/linux/$(TARGET)
 
-	# 64-Bit Dardwin
+	# 64-Bit Darwin
 	GOOS=darwin GOARCH=amd64 $(GO) build -ldflags "-w -s -X 'kubectl-cluster/cmd/version.BuildDate=$(BUILD_DATE)' -X 'kubectl-cluster/cmd/version.GitBranch=$(GIT_BRANCH)' -X 'kubectl-cluster/cmd/version.GitHash=$(GIT_HASH)'  -X 'kubectl-cluster/cmd/version.Version=$(VERSION)'" -o $(ARTIFACTS)/darwin/$(TARGET)
+
+	# 64-Bit Windows
+	GOOS=windows GOARCH=amd64 $(GO) build -ldflags "-w -s -X 'kubectl-cluster/cmd/version.BuildDate=$(BUILD_DATE)' -X 'kubectl-cluster/cmd/version.GitBranch=$(GIT_BRANCH)' -X 'kubectl-cluster/cmd/version.GitHash=$(GIT_HASH)'  -X 'kubectl-cluster/cmd/version.Version=$(VERSION)'" -o $(ARTIFACTS)/windows/$(TARGET)
+
 
 all: compile
 
