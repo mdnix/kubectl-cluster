@@ -23,10 +23,10 @@ cat /home/marco/.clusters
 clusters:
   - name: minikube
     config: /home/marco/.kube/config-mini
-	tags: test
+    tags: test
   - name: okd
     config: /home/marco/.kube/config-okd
-	tags: prod
+    tags: prod
 ```
 
 ### List available clusters
